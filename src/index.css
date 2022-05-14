@@ -50,20 +50,9 @@ code {
   height: 100vh;
 }
 
-.weather {
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
 .clock {
   display: inline-block;
   margin-bottom: 0.4rem;
-}
-
-.date {
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin-bottom: 0.8rem;
 }
 
 .icon {
@@ -83,9 +72,28 @@ code {
 .name {
   font-size: 1.4rem;
   font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+
+.date {
+  font-size: 1.0rem;
+  font-weight: 400;
+}
+
+.weather {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.desc {
+  font-size: 1.0rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  font-style: italic;
 }
 
 .msg {
   font-style: italic;
   font-size: 1.0rem;
+  margin-top: 0.4rem;
 }

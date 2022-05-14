@@ -1,57 +1,60 @@
 import React from "react";
 
-class Weather extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      info: props.info,
-      isDay: props.isDay,
-    };
-  }
-
-  getIcon = (main) => {
+function Weather(props) {
+  const getIcon = (main) => {
+    const isDay = props.isDay;
     let type = main.toLowerCase();
-    switch(type){
-      case 'haze': {
-        return <i className="fa-solid fa-smog"></i>
+    switch (type) {
+      case "haze": {
+        return <i className="fa-solid fa-smog"></i>;
       }
-      case 'rain': {
-        return <i className="fa-solid fa-cloud-rain"></i>
+      case "rain": {
+        return <i className="fa-solid fa-cloud-rain"></i>;
       }
-      case 'clouds': {
-        return <i class="fa-solid fa-cloud-sun"></i>
+      case "clouds": {
+        return isDay ? (
+          <i class="fa-solid fa-cloud-sun"></i>
+        ) : (
+          <i class="fa-solid fa-cloud-moon"></i>
+        );
       }
-      case 'clear': {
-        return <i className="fa-solid fa-sun"></i>
+      case "clear": {
+        return isDay ? (
+          <i className="fa-solid fa-sun"></i>
+        ) : (
+          <i class="fa-solid fa-moon"></i>
+        );
       }
-      case 'snow': {
-        return <i className="fa-solid fa-cloud-snow"></i>
+      case "snow": {
+        return <i className="fa-solid fa-cloud-snow"></i>;
       }
-      case 'mist': {
-        return <i className="fa-solid fa-cloud"></i>
+      case "mist": {
+        return <i className="fa-solid fa-cloud"></i>;
       }
       default: {
-        return <i className="fa-solid fa-rainbow"></i>
+        return <i className="fa-solid fa-rainbow"></i>;
       }
     }
-  }
+  };
 
-  render() {
-    const main = this.state.info.weather[0].main;
-    const temp = this.state.info.main.temp.toFixed(0);
-    const icon = this.getIcon(main);
+  const main = props.info.weather[0].main;
+  const temp = props.info.main.temp.toFixed(0);
+  const icon = getIcon(main);
 
-    return (
+  return (
+    <>
+      <p className="name">
+        {props.info.name}, {props.info.sys.country}
+      </p>
       <div className="weather">
-        <p className="temp">
-          <span className="icon">
-            {icon}
-          </span>
-          {temp}°C
-        </p>
+        <p className="temp">{temp}°C</p>
       </div>
-    );
-  }
+      <p className="desc">
+        <span className="icon">{icon}</span>
+        {main}
+      </p>
+    </>
+  );
 }
 
 export default Weather;

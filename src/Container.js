@@ -1,29 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Clock from "./Clock";
 import Weather from "./Weather";
 import { getGPSCoordinates, getWeatherFromCoordinates } from "./helper";
 
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDay: this.checkDay(),
-      coordinates: null,
-      weather: {},
-      isLoading: true,
-      isError: false,
-    };
-  }
-
-  checkDay() {
-    const hour = new Date().getHours();
-    if (hour < 6 || hour >= 18) {
+function Container() {
+  const checkIfDay = () => {
+    const hours = new Date().getHours();
+    if (hours < 6 || hours >= 18) {
       return false;
     }
     return true;
-  }
+  };
 
-  changeBodyBg = (main) => {
+  const [data, setData] = useState({
+    isDay: checkIfDay(),
+    coordinates: null,
+    weather: null,
+    loading: true,
+    error: false,
+  });
+
+  const changeBodyBg = (main) => {
     const type = main.toLowerCase();
     switch (type) {
       case "haze": {
@@ -35,7 +32,7 @@ class Container extends React.Component {
         return;
       }
       case "clear": {
-        if (this.state.isDay) {
+        if (data.isDay) {
           document.body.setAttribute("class", "clear");
         } else {
           document.body.setAttribute("class", "clear-night");
@@ -43,18 +40,18 @@ class Container extends React.Component {
         return;
       }
       case "clouds": {
-        if (this.state.isDay) {
+        if (data.isDay) {
           document.body.setAttribute("class", "clouds");
         } else {
           document.body.setAttribute("class", "clouds-night");
         }
         return;
       }
-      case 'mist': {
-        if(this.state.isDay){
-          document.body.setAttribute('class', 'mist');
+      case "mist": {
+        if (data.isDay) {
+          document.body.setAttribute("class", "mist");
         } else {
-          document.body.setAttribute('class', 'clouds-night');
+          document.body.setAttribute("class", "clouds-night");
         }
         return;
       }
@@ -68,64 +65,67 @@ class Container extends React.Component {
     }
   };
 
-  async componentDidMount() {
-    try {
-      let coordinates;
-      const location = await getGPSCoordinates();
-      if (!location) {
-        coordinates = {
-          lat: 12.97,
-          lon: 77.59,
-        };
+  useEffect(() => {
+    let unmounted = false;
+    const init = async () => {
+      try {
+        let coordinates;
+        const location = await getGPSCoordinates();
+        if (location === undefined) {
+          coordinates = {
+            lat: 12.97,
+            lon: 77.59,
+          };
+        } else {
+          coordinates = { ...location };
+        }
+        const weather = await getWeatherFromCoordinates(
+          coordinates.lat,
+          coordinates.lon
+        );
+        changeBodyBg(weather.weather[0].main);
+        if (!unmounted) {
+          setData({
+            ...data,
+            weather,
+            coordinates,
+            loading: false,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        if (!unmounted) {
+          setData({
+            ...data,
+            loading: false,
+            error: true,
+          });
+        }
       }
-      else {
-        coordinates = {
-          ...location,
-        };
-      }
-      const weather = await getWeatherFromCoordinates(
-        coordinates.lat,
-        coordinates.lon
-      );
-      this.changeBodyBg(weather.weather[0].main);
-      this.setState({
-        coordinates,
-        weather,
-        isLoading: false,
-        isError: false,
-      });
-    } catch (error) {
-      console.error(error);
-      this.setState({
-        isLoading: false,
-        isError: true,
-      });
-    }
+    };
+    init();
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  if (data.loading || data.weather === null) {
+    return <div className="container">{/* show spinner */}</div>;
   }
 
-  render() {
-    const { isLoading, isError, weather, isDay } = this.state;
-    if (isLoading) {
-      return <div className="container">{/* show spinner */}</div>;
-    }
-    if (isError) {
-      return (
-        <div className="container">
-          <Clock />
-          <p className="msg">could not get weather data</p>
-        </div>
-      );
-    }
-    return (
-      <div className="container">
-        <Weather info={weather} isDay={isDay} />
-        <Clock />
-        <p className="name">
-          {weather.name}, {weather.sys.country}
-        </p>
-      </div>
-    );
+  if (data.error) {
+    <div className="container">
+      <Clock />
+      <p className="msg">could not get weather data</p>
+    </div>;
   }
+
+  return (
+    <div className="container">
+      <Weather info={data.weather} isDay={data.isDay} />
+      <Clock />
+    </div>
+  );
 }
 
 export default Container;
