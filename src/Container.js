@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Clock from "./Clock";
 import Weather from "./Weather";
 import { getGPSCoordinates, getWeatherFromCoordinates } from "./helper";
+import Search from "./Search";
 
 function Container() {
   const checkIfDay = () => {
@@ -19,6 +20,8 @@ function Container() {
     loading: true,
     error: false,
   });
+
+  const handleSelect = () => {}
 
   const changeBodyBg = (main) => {
     const type = main.toLowerCase();
@@ -122,6 +125,7 @@ function Container() {
 
   return (
     <div className="container">
+      <Search handleSelect={handleSelect}/>
       <Weather info={data.weather} isDay={data.isDay} />
       <Clock />
     </div>
