@@ -54,7 +54,7 @@ code {
 .searchLayout {
   position: absolute;
   max-width: 250px;
-  margin-left: -137px;
+  margin-left: -150px;
   top: 2rem;
   left: 50%;
 }
@@ -72,7 +72,7 @@ code {
 
 .searchIcon {
   position: absolute;
-  top: 1rem;
+  top: 1.1rem;
   left: 1rem;
 }
 
@@ -85,6 +85,7 @@ code {
   border-radius: 9999px;
   font-weight: 500;
   padding-left: 2.4rem;
+  font-size: 1.0rem;
 }
 
 .searchBar:active, .searchBar:focus {
