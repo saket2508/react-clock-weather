@@ -73,13 +73,8 @@ code {
 
 .searchIcon {
   position: absolute;
-  top: 1.1rem;
+  top: 17px;
   left: 1rem;
-  @media (max-width: 767px) {
-    position: absolute;
-    top: 1.3rem;
-    left: 1rem;
-  }
 }
 
 .searchBar {
@@ -87,7 +82,7 @@ code {
   background-color: transparent;
   padding: 1rem;
   border: 2px solid white;
-  color: rgb(67, 36, 36);
+  color: white;
   border-radius: 9999px;
   font-weight: 500;
   padding-left: 2.4rem;
