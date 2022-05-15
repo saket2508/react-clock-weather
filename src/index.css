@@ -53,7 +53,8 @@ code {
 
 .searchLayout {
   position: absolute;
-  margin-left: -145px;
+  max-width: 250px;
+  margin-left: -137px;
   top: 2rem;
   left: 50%;
 }
@@ -65,7 +66,7 @@ code {
 }
 
 .searchContainer {
-  max-width: 250px;
+  width: 100%;
   position: relative;
 }
 
@@ -82,13 +83,42 @@ code {
   border: 2px solid white;
   color: white;
   border-radius: 9999px;
-  font-weight: 600;
-  padding-left: 2.2rem;
+  font-weight: 500;
+  padding-left: 2.4rem;
 }
 
 .searchBar:active, .searchBar:focus {
   outline: none;
   box-shadow: none;
+}
+
+.optionsContainer {
+  position: absolute;
+  width: 270px;
+  margin-right:5px;
+  margin-left: 5px;
+  margin-top: 0.2rem;
+  background-color: #e5e7eb;
+  color: black;
+  border-radius: 0.125rem;
+  font-size: 0.9rem;
+}
+
+.optionsContainer ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 0
+}
+
+.optionsContainer li {
+  font-weight: 400;
+  padding: 0.5rem;
+}
+
+.optionsContainer li:hover {
+  background-color: #d1d5db;
+  border-radius: 0.125rem;
 }
 
 .clock {
@@ -114,6 +144,7 @@ code {
   font-size: 1.4rem;
   font-weight: 400;
   margin-bottom: 0.4rem;
+  text-align: center;
 }
 
 .date {
@@ -130,7 +161,6 @@ code {
   font-size: 1.0rem;
   font-weight: 400;
   margin-bottom: 0.8rem;
-  font-style: italic;
 }
 
 .msg {

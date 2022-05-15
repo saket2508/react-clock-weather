@@ -11,8 +11,14 @@ function Weather(props) {
       case "smoke": {
         return <i className="fa-solid fa-smog"></i>;
       }
+      case "dust": {
+        return <i className="fa-solid fa-smog"></i>;
+      }
       case "rain": {
         return <i className="fa-solid fa-cloud-rain"></i>;
+      }
+      case 'thunderstorm': {
+        return <i class="fa-solid fa-cloud-showers-water"></i>;
       }
       case "clouds": {
         return isDay ? (
@@ -34,12 +40,15 @@ function Weather(props) {
       case "mist": {
         return <i className="fa-solid fa-cloud"></i>;
       }
+      case "fog": {
+        return <i className="fa-solid fa-cloud"></i>;
+      }
       default: {
         return <i className="fa-solid fa-rainbow"></i>;
       }
     }
   };
-
+  const city = props.city;
   const main = props.info.weather[0].main;
   const temp = props.info.main.temp.toFixed(0);
   const icon = getIcon(main);
@@ -47,7 +56,7 @@ function Weather(props) {
   return (
     <>
       <p className="name">
-        {props.info.name}, {props.info.sys.country}
+        {city}
       </p>
       <div className="weather">
         <p className="temp">{temp}°C</p>
