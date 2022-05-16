@@ -29,12 +29,18 @@ const changeBodyBg = (main, isDay) => {
   const type = main.toLowerCase();
   switch (type) {
     case "haze": {
+    }
+    case "smoke": {
       document.body.setAttribute("class", "haze");
-      return;
+      break;
     }
     case "rain": {
       document.body.setAttribute("class", "rain");
-      return;
+      break;
+    }
+    case 'thunderstorm': {
+      document.body.setAttribute("class", "thunderstorm");
+      break;
     }
     case "clear": {
       if (isDay) {
@@ -42,7 +48,7 @@ const changeBodyBg = (main, isDay) => {
       } else {
         document.body.setAttribute("class", "clear-night");
       }
-      return;
+      break;
     }
     case "clouds": {
       if (isDay) {
@@ -50,22 +56,24 @@ const changeBodyBg = (main, isDay) => {
       } else {
         document.body.setAttribute("class", "clouds-night");
       }
-      return;
+      break;
     }
     case "mist": {
+    }
+    case "fog": {
       if (isDay) {
         document.body.setAttribute("class", "mist");
       } else {
         document.body.setAttribute("class", "clouds-night");
       }
-      return;
+      break;
     }
     case "snow": {
       document.body.setAttribute("class", "snow");
-      return;
+      break;
     }
     default: {
-      return;
+      break;
     }
   }
 };

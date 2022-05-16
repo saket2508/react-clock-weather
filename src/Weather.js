@@ -6,10 +6,8 @@ function Weather(props) {
     let type = main.toLowerCase();
     switch (type) {
       case "haze": {
-        return <i className="fa-solid fa-smog"></i>;
       }
       case "smoke": {
-        return <i className="fa-solid fa-smog"></i>;
       }
       case "dust": {
         return <i className="fa-solid fa-smog"></i>;
@@ -38,7 +36,6 @@ function Weather(props) {
         return <i className="fa-solid fa-cloud-snow"></i>;
       }
       case "mist": {
-        return <i className="fa-solid fa-cloud"></i>;
       }
       case "fog": {
         return <i className="fa-solid fa-cloud"></i>;
