@@ -90,11 +90,20 @@ code {
   border-radius: 9999px;
   font-weight: 500;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.searchBar:active, .searchBar:focus {
+.searchBar:active{
   outline: none;
   box-shadow: none;
+}
+
+.searchBar:focus {
+  outline: none;
+  box-shadow: none;
+  text-overflow: clip;
 }
 
 .optionsContainer {
@@ -188,5 +197,19 @@ code {
     border-radius: 9999px;
     font-weight: 500;
     font-size: 1.0rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .searchBar:active{
+    outline: none;
+    box-shadow: none;
+  }
+
+  .searchBar:focus {
+    outline: none;
+    box-shadow: none;
+    text-overflow: clip;
   }
 }
