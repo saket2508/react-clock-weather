@@ -150,33 +150,39 @@ export const weatherConfig = {
     }
   },
   mist:{
-    icon(){
-      return <i className="fa-solid fa-cloud"></i>;
-    },
     day:{
       bg(){
         document.body.setAttribute("class", "mist");
-      }
+      },
+      icon(){
+        return <i className="fa-solid fa-cloud"></i>;
+      },
     },
     night:{
       bg(){
         document.body.setAttribute("class", "clouds-night");
-      }
+      },
+      icon(){
+        return <i className="fa-solid fa-cloud"></i>;
+      },
     }
   },
   fog:{
-    icon(){
-      return <i className="fa-solid fa-cloud"></i>;
-    },
     day:{
       bg(){
         document.body.setAttribute("class", "mist");
-      }
+      },
+      icon(){
+        return <i className="fa-solid fa-cloud"></i>;
+      },
     },
     night:{
       bg(){
         document.body.setAttribute("class", "clouds-night");
-      }
+      },
+      icon(){
+        return <i className="fa-solid fa-cloud"></i>;
+      },
     }
   }
 }

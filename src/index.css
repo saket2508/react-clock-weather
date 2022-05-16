@@ -180,11 +180,16 @@ code {
   margin-bottom: 0.6rem;
 }
 
-.feels-like{
+.feels-like, .humidity, .max-min{
   text-align: center;
   font-size: 0.9rem;
-  font-style: italic;
+  font-weight: 400;
   margin-bottom: 0.5rem;
+}
+
+.max-min span{
+  padding-left: 0.175rem;
+  padding-right: 0.175rem;
 }
 
 .msg {
