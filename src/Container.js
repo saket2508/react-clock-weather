@@ -30,9 +30,14 @@ const changeBodyBg = (main, isDay) => {
   switch (type) {
     case "haze": {
     }
+    case "dust": {
+    }
     case "smoke": {
       document.body.setAttribute("class", "haze");
       break;
+    }
+    case "drizzle":{
+
     }
     case "rain": {
       document.body.setAttribute("class", "rain");

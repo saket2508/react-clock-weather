@@ -12,6 +12,7 @@ function Weather(props) {
       case "dust": {
         return <i className="fa-solid fa-smog"></i>;
       }
+      case "drizzle":{}
       case "rain": {
         return <i className="fa-solid fa-cloud-rain"></i>;
       }
