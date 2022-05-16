@@ -10,7 +10,7 @@
 
 - Requests for a user's current location, and when granted access, shows the present weather conditions in that place.
 
-- I have used the concept of debouncing to limit the number of requests that get sent furing search. The API only gets hit after a fixed interval of typing a character in the search bar. This will then show a list of results based on what a user types.
+- I have used the concept of debouncing to limit the number of requests that get sent during search. The API only gets hit after a fixed interval of typing a character in the search bar. This will then show a list of results based on what the user typed.
 
 - Implemented a timer that updates the time on the screen every second.
 
