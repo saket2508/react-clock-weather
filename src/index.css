@@ -177,7 +177,14 @@ code {
   text-align: center;
   font-size: 1.0rem;
   font-weight: 400;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
+}
+
+.feels-like{
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
 .msg {

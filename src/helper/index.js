@@ -56,6 +56,131 @@ export function getGPSCoordinates() {
   });
 }
 
+export const weatherConfig = {
+  dust: {
+    icon(){
+      return <i className="fa-solid fa-smog"></i>;
+    },
+    bg(){
+      document.body.setAttribute('class', 'haze');
+    }
+  },
+  smoke: {
+    icon(){
+      return <i className="fa-solid fa-smog"></i>;
+    },
+    bg(){
+      document.body.setAttribute('class', 'haze');
+    }
+  },
+  haze: {
+    icon(){
+      return <i className="fa-solid fa-smog"></i>;
+    },
+    bg(){
+      document.body.setAttribute('class', 'haze');
+    }
+  },
+  drizzle: {
+    icon(){
+      return <i className="fa-solid fa-cloud-rain"></i>
+    },
+    bg(){
+      document.body.setAttribute("class", "rain");
+    }
+  },
+  rain: {
+    icon(){
+      return <i className="fa-solid fa-cloud-rain"></i>
+    },
+    bg(){
+      document.body.setAttribute("class", "rain");
+    }
+  },
+  thunderstorm: {
+    icon(){
+      return <i class="fa-solid fa-cloud-showers-water"></i>;
+    },
+    bg(){
+      document.body.setAttribute("class", "thunderstorm");
+    }
+  },
+  snow: {
+    icon(){
+      return <i className="fa-solid fa-cloud-snow"></i>;
+    },
+    bg(){
+      document.body.setAttribute("class", "snow");
+    }
+  },
+  clear:{
+    day:{
+      bg(){
+        document.body.setAttribute("class", "clear");
+      },
+      icon(){
+        return <i className="fa-solid fa-sun"></i>;
+      }
+    },
+    night:{
+      bg(){
+        document.body.setAttribute("class", "clear-night");
+      },
+      icon(){
+        return <i class="fa-solid fa-moon"></i>
+      }
+    }
+  },
+  clouds:{
+    day:{
+      bg(){
+        document.body.setAttribute("class", "clouds");
+      },
+      icon(){
+        return <i class="fa-solid fa-cloud-sun"></i>
+      }
+    },
+    night:{
+      bg(){
+        document.body.setAttribute("class", "clouds-night");
+      },
+      icon(){
+        return <i class="fa-solid fa-cloud-moon"></i>
+      }
+    }
+  },
+  mist:{
+    icon(){
+      return <i className="fa-solid fa-cloud"></i>;
+    },
+    day:{
+      bg(){
+        document.body.setAttribute("class", "mist");
+      }
+    },
+    night:{
+      bg(){
+        document.body.setAttribute("class", "clouds-night");
+      }
+    }
+  },
+  fog:{
+    icon(){
+      return <i className="fa-solid fa-cloud"></i>;
+    },
+    day:{
+      bg(){
+        document.body.setAttribute("class", "mist");
+      }
+    },
+    night:{
+      bg(){
+        document.body.setAttribute("class", "clouds-night");
+      }
+    }
+  }
+}
+
 export const countryList = {
   "AF": "Afghanistan",
   "AL": "Albania",

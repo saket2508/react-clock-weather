@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Clock from "./Clock";
 import Weather from "./Weather";
 import {
+  weatherConfig,
   getGPSCoordinates,
   getWeatherFromCoordinates,
   countryList,
@@ -27,58 +28,13 @@ const checkIfDay = (timezone = undefined) => {
 
 const changeBodyBg = (main, isDay) => {
   const type = main.toLowerCase();
-  switch (type) {
-    case "haze": {
-    }
-    case "dust": {
-    }
-    case "smoke": {
-      document.body.setAttribute("class", "haze");
-      break;
-    }
-    case "drizzle":{
-
-    }
-    case "rain": {
-      document.body.setAttribute("class", "rain");
-      break;
-    }
-    case 'thunderstorm': {
-      document.body.setAttribute("class", "thunderstorm");
-      break;
-    }
-    case "clear": {
-      if (isDay) {
-        document.body.setAttribute("class", "clear");
-      } else {
-        document.body.setAttribute("class", "clear-night");
-      }
-      break;
-    }
-    case "clouds": {
-      if (isDay) {
-        document.body.setAttribute("class", "clouds");
-      } else {
-        document.body.setAttribute("class", "clouds-night");
-      }
-      break;
-    }
-    case "mist": {
-    }
-    case "fog": {
-      if (isDay) {
-        document.body.setAttribute("class", "mist");
-      } else {
-        document.body.setAttribute("class", "clouds-night");
-      }
-      break;
-    }
-    case "snow": {
-      document.body.setAttribute("class", "snow");
-      break;
-    }
-    default: {
-      break;
+  if (type in weatherConfig) {
+    if (weatherConfig[type].day && weatherConfig[type].night) {
+      isDay
+        ? weatherConfig[type].day.bg()
+        : weatherConfig[type].night.bg();
+    } else {
+      weatherConfig[type].bg();
     }
   }
 };
@@ -113,12 +69,12 @@ function Container() {
       if (location === undefined) {
         coordinates = {
           lat: 28.6139,
-          lon: 77.2090,
+          lon: 77.209,
         };
       } else {
         coordinates = { ...location };
       }
-      if(!unmounted){
+      if (!unmounted) {
         setData({
           ...data,
           coordinates,
@@ -144,7 +100,7 @@ function Container() {
         );
         const isDay = checkIfDay(weather.timezone);
         changeBodyBg(weather.weather[0].main, isDay);
-        if(!unmounted){
+        if (!unmounted) {
           setData({
             ...data,
             city: data.city
