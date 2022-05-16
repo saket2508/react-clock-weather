@@ -57,6 +57,8 @@ code {
   justify-content: center;
   max-width: 100%;
   height: 100vh;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
 }
 
 .searchLayout {
@@ -87,7 +89,7 @@ code {
   color: white;
   border-radius: 9999px;
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .searchBar:active, .searchBar:focus {
@@ -125,6 +127,7 @@ code {
 }
 
 .clock {
+  text-align: center;
   display: inline-block;
   margin-bottom: 0.4rem;
 }
@@ -151,6 +154,7 @@ code {
 }
 
 .date {
+  text-align: center;
   font-size: 1.0rem;
   font-weight: 400;
 }
@@ -161,12 +165,14 @@ code {
 }
 
 .desc {
+  text-align: center;
   font-size: 1.0rem;
   font-weight: 400;
   margin-bottom: 0.8rem;
 }
 
 .msg {
+  text-align: center;
   font-style: italic;
   font-size: 1.0rem;
   margin-top: 0.4rem;
