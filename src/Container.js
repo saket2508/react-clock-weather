@@ -30,9 +30,7 @@ const changeBodyBg = (main, isDay) => {
   const type = main.toLowerCase();
   if (type in weatherConfig) {
     if (weatherConfig[type].day && weatherConfig[type].night) {
-      isDay
-        ? weatherConfig[type].day.bg()
-        : weatherConfig[type].night.bg();
+      isDay ? weatherConfig[type].day.bg() : weatherConfig[type].night.bg();
     } else {
       weatherConfig[type].bg();
     }
@@ -51,18 +49,17 @@ function Container() {
   });
 
   const selectCoordinates = (lat, lon, city) => {
-    setData({
-      ...data,
-      coordinates: {
-        lat,
-        lon,
-      },
+    setData((prev) => ({
+      ...prev,
+      coordinates: { lat, lon },
       city,
-    });
+    }));
   };
 
   useEffect(() => {
-    let unmounted = false;
+    if (data.coordinates !== null) {
+      return;
+    }
     const getUserLocation = async () => {
       let coordinates;
       const location = await getGPSCoordinates();
@@ -74,24 +71,19 @@ function Container() {
       } else {
         coordinates = { ...location };
       }
-      if (!unmounted) {
-        setData({
-          ...data,
-          coordinates,
-        });
-      }
+      setData({
+        ...data,
+        coordinates,
+      });
     };
     getUserLocation();
-    return () => {
-      unmounted = true;
-    };
   }, []);
 
   useEffect(() => {
+    let unmounted = false;
     if (data.coordinates === null) {
       return;
     }
-    let unmounted = false;
     const getWeatherData = async () => {
       try {
         const weather = await getWeatherFromCoordinates(
@@ -99,26 +91,28 @@ function Container() {
           data.coordinates.lon
         );
         const isDay = checkIfDay(weather.timezone);
+        const city = data.city !== null ? data.city : {
+          name: weather.name,
+          country: countryList[weather.sys.country]
+        };
         changeBodyBg(weather.weather[0].main, isDay);
         if (!unmounted) {
-          setData({
-            ...data,
-            city: data.city
-              ? data.city
-              : `${weather.name}, ${countryList[weather.sys.country]}`,
+          setData((prev) => ({
+            ...prev,
+            city,
             isDay,
             weather,
             loading: false,
             timezone: weather.timezone,
-          });
+          }));
         }
       } catch (e) {
         console.error(e);
-        setData({
-          ...data,
+        setData((prev) => ({
+          ...prev,
           loading: false,
-          error: true,
-        });
+          error: true
+        }));
       }
     };
     getWeatherData();

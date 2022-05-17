@@ -17,7 +17,9 @@ function Weather(props) {
       return <div></div>;
     }
   };
-  const city = props.city;
+  const city_name = props.city.name;
+  const state = props.city.state;
+  const country = props.city.country;
   const main = props.info.weather[0].main;
   const temp = props.info.main.temp.toFixed(0);
   const feels_like = props.info.main.feels_like
@@ -36,7 +38,10 @@ function Weather(props) {
 
   return (
     <>
-      <p className="name">{city}</p>
+      <p className="name">{city_name}</p>
+      <p className="state-country">
+        {country && state ? `${state}, ${country}` : `${country}`}
+      </p>
       <div className="weather">
         <p className="temp">{temp}°C</p>
       </div>

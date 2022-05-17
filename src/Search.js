@@ -44,9 +44,16 @@ function Search({ selectCoordinates }) {
     setTerm(item.name);
     let city;
     if(item.state){
-      city = `${item.name}, ${item.state}, ${countryList[item.country]}`;
+      city = {
+        name: item.name,
+        state: item.state,
+        country: countryList[item.country]
+      };
     } else {
-      city = `${item.name}, ${countryList[item.country]}`;
+      city = {
+        name: item.name,
+        country: countryList[item.country]
+      };
     }
     selectCoordinates(item.lat, item.lon, city);
     setResults([]);
